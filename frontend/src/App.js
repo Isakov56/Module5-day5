@@ -4,6 +4,7 @@ import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import ProductList from "./components/ProductList";
 import ProductBackoffice from "./components/ProductBackoffice";
+import ReviewBackoffice from "./components/ReviewBackoffice";
 const { BrowserRouter, Route } = require("react-router-dom");
 
 function App() {
@@ -19,7 +20,8 @@ function App() {
         exact
         render={() => <ProductList searchQuery={searchQuery} />}
       />
-      <Route path="/addproduct" exact render={() => <ProductBackoffice />} />
+      <Route path="/add-product" exact render={() => <ProductBackoffice />} />
+      <Route path="/add-review" exact render={() => <ReviewBackoffice />} />
       <Footer />
     </BrowserRouter>
   );

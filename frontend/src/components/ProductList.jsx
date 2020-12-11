@@ -1,4 +1,4 @@
-import { Container } from "react-bootstrap";
+import { Container, Spinner, Row, Col } from "react-bootstrap";
 import SingleProduct from "./Product";
 
 const { Component } = require("react");
@@ -20,14 +20,26 @@ class ProductList extends Component {
   refreshList = () => {
     axios
       .get("http://localhost:3001/products")
-      .then((res) => this.setState({ studentsList: res.data }))
+      .then((res) => this.setState({ productsList: res.data }))
+
       .catch((err) => console.log(err));
   };
 
   render() {
+    const { productsList } = this.state;
     return (
       <Container>
-        <SingleProduct />
+        <Row>
+          {productsList.length ? (
+            productsList.map((product) => (
+              <Col xs={4}>
+                <SingleProduct data={product} />
+              </Col>
+            ))
+          ) : (
+            <Spinner animation="border" />
+          )}
+        </Row>
       </Container>
     );
   }
